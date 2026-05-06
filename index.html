@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdGen AI — Multimodal Advertisement Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="wordmark">
+        <span class="wordmark-dot"></span>
+        AdGen <em>AI</em>
+      </div>
+      <nav class="header-nav">
+        <span class="nav-badge">Multimodal System</span>
+        <span class="nav-tag">College Demo · 2025</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <p class="hero-eyebrow">Multimodal AI System</p>
+    <h1 class="hero-title">Product Advertisement<br /><em>Generation</em></h1>
+    <p class="hero-sub">Upload a product image, describe your product — watch AI craft platform-ready ad copy, audience insights, and a live HTML banner.</p>
+  </section>
+
+  <!-- ── Pipeline indicator ── -->
+  <section class="pipeline-section">
+    <div class="pipeline-track">
+      <div class="pipeline-step" id="ps-1">
+        <div class="ps-icon">01</div>
+        <div class="ps-label">Image<br/>Ingestion</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step" id="ps-2">
+        <div class="ps-icon">02</div>
+        <div class="ps-label">Vision<br/>Analysis</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step" id="ps-3">
+        <div class="ps-icon">03</div>
+        <div class="ps-label">Language<br/>Generation</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step" id="ps-4">
+        <div class="ps-icon">04</div>
+        <div class="ps-label">Ad<br/>Rendering</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main workspace ── -->
+  <main class="workspace">
+
+    <!-- LEFT: Inputs -->
+    <aside class="input-panel">
+
+      <div class="panel-section">
+        <label class="field-label">Product image</label>
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="file-input" accept="image/*" hidden />
+          <div class="upload-body" id="upload-body">
+            <div class="upload-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <p class="upload-cta">Click to upload</p>
+            <p class="upload-hint">PNG · JPG · WEBP · up to 10 MB</p>
+          </div>
+          <img id="img-preview" src="" alt="Product preview" hidden />
+          <button class="img-remove" id="img-remove" hidden>✕ Remove</button>
+        </div>
+        <p class="field-note">The AI will visually analyse this image as a multimodal input.</p>
+      </div>
+
+      <div class="panel-section">
+        <label class="field-label" for="p-name">Product name</label>
+        <input class="text-field" type="text" id="p-name" placeholder="e.g. BrewMaster Pro Coffee Maker" />
+      </div>
+
+      <div class="panel-section">
+        <label class="field-label" for="p-desc">Key features &amp; description</label>
+        <textarea class="text-field textarea" id="p-desc" rows="4" placeholder="e.g. Precision temperature control, 24-hour scheduling, eco-conscious materials, whisper-quiet grind..."></textarea>
+      </div>
+
+      <div class="panel-section">
+        <label class="field-label">Target platform</label>
+        <div class="chip-group" id="platform-group">
+          <button class="chip active" data-val="Instagram">Instagram</button>
+          <button class="chip" data-val="LinkedIn">LinkedIn</button>
+          <button class="chip" data-val="Facebook">Facebook</button>
+          <button class="chip" data-val="Google Ads">Google Ads</button>
+          <button class="chip" data-val="Twitter / X">Twitter / X</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <label class="field-label">Ad tone</label>
+        <div class="chip-group" id="tone-group">
+          <button class="chip active" data-val="Inspiring">Inspiring</button>
+          <button class="chip" data-val="Professional">Professional</button>
+          <button class="chip" data-val="Playful">Playful</button>
+          <button class="chip" data-val="Luxury">Luxury</button>
+          <button class="chip" data-val="Urgent">Urgent</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <label class="field-label">Industry</label>
+        <select class="text-field select-field" id="industry">
+          <option>Tech &amp; Gadgets</option>
+          <option>Food &amp; Beverage</option>
+          <option>Fashion &amp; Apparel</option>
+          <option>Health &amp; Fitness</option>
+          <option>Home &amp; Living</option>
+          <option>Beauty &amp; Skincare</option>
+          <option>Education</option>
+          <option>Automotive</option>
+        </select>
+      </div>
+
+      <button class="gen-btn" id="gen-btn">
+        <span class="gen-btn-label">Generate Advertisement</span>
+        <span class="gen-btn-icon">→</span>
+      </button>
+
+    </aside>
+
+    <!-- RIGHT: Output -->
+    <section class="output-panel" id="output-panel">
+
+      <!-- empty state -->
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <p class="empty-title">Awaiting input</p>
+        <p class="empty-sub">Fill in product details on the left, then click Generate Advertisement to see AI-crafted outputs here.</p>
+      </div>
+
+      <!-- loading state -->
+      <div class="loading-state" id="loading-state" hidden>
+        <div class="loader-ring"></div>
+        <p class="loader-msg" id="loader-msg">Initialising pipeline…</p>
+        <div class="loader-steps" id="loader-steps">
+          <span class="lstep" id="lst-1">Vision analysis</span>
+          <span class="lstep" id="lst-2">Audience profiling</span>
+          <span class="lstep" id="lst-3">Copywriting</span>
+          <span class="lstep" id="lst-4">Rendering banner</span>
+        </div>
+      </div>
+
+      <!-- results -->
+      <div class="results" id="results" hidden>
+
+        <!-- Tagline -->
+        <div class="result-card result-tagline">
+          <div class="result-card-header">
+            <span class="result-label">Main Tagline</span>
+            <button class="copy-btn" data-target="out-tagline">Copy</button>
+          </div>
+          <p class="tagline-text" id="out-tagline">—</p>
+        </div>
+
+        <!-- Audience -->
+        <div class="result-card">
+          <div class="result-card-header">
+            <span class="result-label">Target Audience Analysis</span>
+          </div>
+          <p class="audience-summary" id="out-audience-summary">—</p>
+          <div class="audience-chips" id="out-audience-chips"></div>
+          <div class="audience-stats" id="out-audience-stats"></div>
+        </div>
+
+        <!-- Ad Copy -->
+        <div class="result-card">
+          <div class="result-card-header">
+            <span class="result-label">Ad Copy</span>
+            <button class="copy-btn" data-target="out-adcopy">Copy</button>
+          </div>
+          <p class="adcopy-text" id="out-adcopy">—</p>
+          <div class="hashtags" id="out-hashtags"></div>
+        </div>
+
+        <!-- HTML Banner Preview -->
+        <div class="result-card result-banner-card">
+          <div class="result-card-header">
+            <span class="result-label">Live HTML Advertisement Banner</span>
+            <button class="copy-btn" id="copy-banner-btn">Copy HTML</button>
+          </div>
+          <div class="banner-wrap">
+            <iframe class="banner-frame" id="banner-frame" title="Ad banner preview" scrolling="no"></iframe>
+          </div>
+          <p class="banner-note">This is a fully self-contained HTML banner — copy the code to embed anywhere.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <p>AdGen AI · Multimodal AI System for Product Advertisement Generation · College Knowledge Demonstration</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
